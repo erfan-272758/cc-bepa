@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const alertSubscriptionSchema = new mongoose.Schema(
+const alertSubscriptionSchema = new Schema(
   {
     coin_name: {
       type: String,
@@ -20,7 +20,7 @@ const alertSubscriptionSchema = new mongoose.Schema(
 
 alertSubscriptionSchema.index({ coin_name: 1 }, { name: "coin-name" });
 
-const alertSubscriptionModel = mongoose.model(
+const alertSubscriptionModel = model(
   "alertSubscription",
   alertSubscriptionSchema,
   "alertSubscriptions"
