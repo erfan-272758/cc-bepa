@@ -23,6 +23,7 @@ export default async function () {
     },
   ]);
 
+  console.log("after aggregate : ", prices);
   for (const price of prices) {
     const dif =
       Math.abs(
@@ -33,7 +34,18 @@ export default async function () {
       difference_percentage: { $lte: dif },
     });
     for (const alert of match_alerts) {
-      sendEmail(`Alert for ${alert.coin_name}`).then().catch();
+      console.log("send email to ", alert.coin_name);
+      sendEmail(`Alert for ${alert.coin_name}`)
+        .then((res) => {
+          console.log("email sended");
+        })
+        .catch((err) => {
+          console.error(
+            "email failed",
+            err.response?.data?.message,
+            err.message
+          );
+        });
     }
   }
 }

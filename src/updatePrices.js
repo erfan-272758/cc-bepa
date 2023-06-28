@@ -14,6 +14,7 @@ export default async function () {
       baseURL: process.env.COINNEWS_BASE_URL,
       url: `/data/${coin}`,
     });
+
     new_price.push({
       coin_name: coin,
       price: data.value,
